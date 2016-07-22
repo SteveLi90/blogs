@@ -1,0 +1,190 @@
+### Here is all of visualize [sorting](http://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html)
+
+# Bubble Sort
+
+Bubble sort is easy, you just need to take the element from the beginning as a comparable element, and compare with the neighbor element next to it. If the neighbor element less than it, exchange the position, and compare with the next neighbor element. If the neighbor element greater than it,  take the neighbor element as the comparable element and compare with its neighbor. 
+
+![bubble sort](http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBNnSm1evBaXsiamEwprKLHE23j9qrqI3J36p3GbTO39Cic9BO3c0o97YyQ/0?tp=webp&wxfrom=5&wx_lazy=1)
+
+
+Here is the code written by python and ruby:
+
+**Python:**
+```python
+def shortBubbleSort(alist):
+    exchanges = True
+    passNum = len(alist)-1
+    while passNum >0 and exchanges:
+        exchanges = False
+        for i in range(passNum):
+            if alist[i]>alist[i+1]:
+                exchanges = Ture
+                temp = alist[i]
+                alist[i] = alist[i+1]
+                alist[i+1] = temp
+        passNum -= 1
+```
+
+
+**ruby:**
+```ruby
+def bubbleSort(arr)
+    n = arr.length
+    loop do
+        swapped = false
+        
+        (n-1).times do |i|
+            if arr[i] > arr[i+1]
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                swapped = true
+            end
+        end
+        
+        break if not swapped
+    end
+    return arr
+end
+
+
+arr = Array.new(10000)
+arr = 10000.times.map{0 + Random.rand(10000)}
+arr = bubbleSort(arr)
+puts arr
+```
+
+# Selection Sort
+
+Selection sort just select the smallest or biggest element in the set, and exchange it with the serial order element or another empty set.
+
+![selection sort](http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBNqZiaicWDc1JGYMU25eU49nicWkjWBr7iaPnORA6hpPz95H4sfWjQ7o0yoA/0?tp=webp&wxfrom=5&wx_lazy=1)
+
+**Python:**
+```python
+def selectionSort(alist):
+    for i in range(len(alist)-1,0,-1):   # a loop for each position
+        posMax = 0
+        for loc in range(1,i+1):         # a sub loop to find the largest number
+            if alist[loc]>alist[posMax]:
+                posMax=loc
+
+        temp = alist[i]                  # exchange the number at current
+        alist[i] = alist[posMax]         # position and the largest number
+        alist[posMax] = temp
+```
+
+**Ruby**
+```ruby
+def slct_sort (arr)
+    n = arr.length 
+    (n).times do |j|
+        index = j
+        for i in j..n-1
+            if arr[i] < arr[index]
+                index = i
+            end   
+        end
+        arr[j], arr[index] = arr[index], arr[j]
+    end
+    return arr
+end
+
+arr = Array.new(10000)
+arr = 10000.times.map{0 + Random.rand(10000)}
+arr = slct_sort(arr)
+puts arr
+```
+
+# insertion sort
+Suppose, you want to sort elements in ascending as in above figure. Then,
+
+* Step 1: The second element of an array is compared with the elements that appears before it (only first element in this case). If the second element is smaller than first element, second element is inserted in the position of first element. After first step, first two elements of an array will be sorted.
+* Step 2: The third element of an array is compared with the elements that appears before it (first and second element). If third element is smaller than first element, it is inserted in the position of first element. If third element is larger than first element but, smaller than second element, it is inserted in the position of second element. If third element is larger than both the elements, it is kept in the position as it is. After second step, first three elements of an array will be sorted.
+* Step 3: Similary, the fourth element of an array is compared with the elements that appears before it (first, second and third element) and the same procedure is applied and that element is inserted in the proper position. After third step, first four elements of an array will be sorted.
+If there are n elements to be sorted. Then, this procedure is repeated n-1 times to get sorted list of array.
+
+python
+
+```python
+def insertSort(alist):
+    for i in range(1,len(alist)):
+        curr = alist[i]
+        pos = i
+# compare the current number and the previous number
+        while pos >0 and alist[pos-1]> curr:
+            alist[pos] = alist[pos-1]
+            pos = pos-1
+# put the number in the right place
+        alist[pos]=curr
+```
+
+ruby:
+
+```ruby
+class Array
+  def insertionsort!
+    1.upto(length - 1) do |i|
+      value = self[i]
+      j = i - 1
+      while j >= 0 and self[j] > value
+        self[j+1] = self[j]
+        j -= 1
+      end
+      self[j+1] = value
+    end
+    self
+  end
+end
+ary = [7,6,5,9,8,4,3,1,2,0]
+p ary.insertionsort!
+# => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+# Shell Sort
+
+The shell sort, sometimes called the “diminishing increment sort,” improves on the insertion sort by breaking the original list into a number of smaller sublists, each of which is sorted using an insertion sort. The unique way that these sublists are chosen is the key to the shell sort. Instead of breaking the list into sublists of contiguous items, the shell sort uses an increment i, sometimes called the gap, to create a sublist by choosing all items that are i items apart.
+
+![shell sort](http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBN2Y0sg8gyBBiaib2xicPaibFBMO4Z7Micq6P6mIWc3kBmNrJgJN8dGOibckFQ/0?tp=webp&wxfrom=5&wx_lazy=1)
+
+python
+
+```python
+def shell(seq):
+    inc = len(seq) // 2
+    while inc:
+        for i, el in enumerate(seq):
+            while i >= inc and seq[i - inc] > el:
+                seq[i] = seq[i - inc]
+                i -= inc
+            seq[i] = el
+        inc = 1 if inc == 2 else int(inc * 5.0 / 11)
+ 
+data = [22, 7, 2, -5, 8, 4]
+shell(data)
+print data # [-5, 2, 4, 7, 8, 22]
+```
+
+ruby:
+
+```ruby
+class Array
+  def shellsort!
+    inc = length / 2
+    while inc != 0
+      inc.step(length-1) do |i|
+        el = self[i]
+        while i >= inc and self[i - inc] > el
+          self[i] = self[i - inc]
+          i -= inc
+        end
+        self[i] = el
+      end
+      inc = (inc == 2 ? 1 : (inc * 5.0 / 11).to_i)
+    end
+    self
+  end
+end
+ 
+data = [22, 7, 2, -5, 8, 4]
+data.shellsort!
+p data # [-5, 2, 4, 7, 8, 22]
+```
