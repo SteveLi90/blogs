@@ -12,27 +12,198 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Blogs</h1>
-      <h2 class="project-tagline">This is a blog system, just wanna write something</h2>
+      <h2 class="project-tagline">Sorting Algorithms</h2>
       <a href="https://github.com/SteveLi90/blogs" class="btn">View on GitHub</a>
       <a href="https://github.com/SteveLi90/blogs/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/SteveLi90/blogs/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="welcome-to-the-steve-lis-blog" class="anchor" href="#welcome-to-the-steve-lis-blog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to the Steve Li's Blog!</h1>
+      <h3>
+<a id="here-is-all-of-visualize-sorting" class="anchor" href="#here-is-all-of-visualize-sorting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Here is all of visualize <a href="http://www.cs.usfca.edu/%7Egalles/visualization/ComparisonSort.html">sorting</a>
+</h3>
 
-<p>This is my personal blog!!</p>
+<h1>
+<a id="bubble-sort" class="anchor" href="#bubble-sort" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bubble Sort</h1>
 
-<p>I try to write something at here, most of them are notes I guess. Now I am working for a small staffing services company. I hope I can work for google in the future!!</p>
+<p>Bubble sort is easy, you just need to take the element from the beginning as a comparable element, and compare with the neighbor element next to it. If the neighbor element less than it, exchange the position, and compare with the next neighbor element. If the neighbor element greater than it,  take the neighbor element as the comparable element and compare with its neighbor. </p>
 
-<p>I am from China, so the grammar of these blogs is not perfect, but acceptable. I try to improve my English writing skills.</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBNnSm1evBaXsiamEwprKLHE23j9qrqI3J36p3GbTO39Cic9BO3c0o97YyQ/0?tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="bubble sort"></p>
 
-<p>I wish github is suppose to add the tag or category feature in the future, so I am able to group my blogs.\</p>
+<p>Here is the code written by python and ruby:</p>
 
-<p>Thank you so much. Everyone have a great day!!!</p>
+<p><strong>Python:</strong></p>
 
-<p><a href="https://github.com/SteveLi90/blogs/wiki/Sorting-Algorithms">sort</a></p>
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">shortBubbleSort</span>(<span class="pl-smi">alist</span>):
+    exchanges <span class="pl-k">=</span> <span class="pl-c1">True</span>
+    passNum <span class="pl-k">=</span> <span class="pl-c1">len</span>(alist)<span class="pl-k">-</span><span class="pl-c1">1</span>
+    <span class="pl-k">while</span> passNum <span class="pl-k">&gt;</span><span class="pl-c1">0</span> <span class="pl-k">and</span> exchanges:
+        exchanges <span class="pl-k">=</span> <span class="pl-c1">False</span>
+        <span class="pl-k">for</span> i <span class="pl-k">in</span> <span class="pl-c1">range</span>(passNum):
+            <span class="pl-k">if</span> alist[i]<span class="pl-k">&gt;</span>alist[i<span class="pl-k">+</span><span class="pl-c1">1</span>]:
+                exchanges <span class="pl-k">=</span> Ture
+                temp <span class="pl-k">=</span> alist[i]
+                alist[i] <span class="pl-k">=</span> alist[i<span class="pl-k">+</span><span class="pl-c1">1</span>]
+                alist[i<span class="pl-k">+</span><span class="pl-c1">1</span>] <span class="pl-k">=</span> temp
+        passNum <span class="pl-k">-=</span> <span class="pl-c1">1</span></pre></div>
+
+<p><strong>ruby:</strong></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">bubbleSort</span>(<span class="pl-smi">arr</span>)
+    n <span class="pl-k">=</span> arr.length
+    <span class="pl-k">loop</span> <span class="pl-k">do</span>
+        swapped <span class="pl-k">=</span> <span class="pl-c1">false</span>
+
+        (n<span class="pl-k">-</span><span class="pl-c1">1</span>).times <span class="pl-k">do </span>|<span class="pl-smi">i</span>|
+            <span class="pl-k">if</span> arr[i] <span class="pl-k">&gt;</span> arr[i<span class="pl-k">+</span><span class="pl-c1">1</span>]
+                arr[i], arr[i<span class="pl-k">+</span><span class="pl-c1">1</span>] <span class="pl-k">=</span> arr[i<span class="pl-k">+</span><span class="pl-c1">1</span>], arr[i]
+                swapped <span class="pl-k">=</span> <span class="pl-c1">true</span>
+            <span class="pl-k">end</span>
+        <span class="pl-k">end</span>
+
+        <span class="pl-k">break</span> <span class="pl-k">if</span> <span class="pl-k">not</span> swapped
+    <span class="pl-k">end</span>
+    <span class="pl-k">return</span> arr
+<span class="pl-k">end</span>
+
+
+arr <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-k">new</span>(<span class="pl-c1">10000</span>)
+arr <span class="pl-k">=</span> <span class="pl-c1">10000</span>.times.map{<span class="pl-c1">0</span> <span class="pl-k">+</span> <span class="pl-c1">Random</span>.rand(<span class="pl-c1">10000</span>)}
+arr <span class="pl-k">=</span> bubbleSort(arr)
+puts arr</pre></div>
+
+<h1>
+<a id="selection-sort" class="anchor" href="#selection-sort" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Selection Sort</h1>
+
+<p>Selection sort just select the smallest or biggest element in the set, and exchange it with the serial order element or another empty set.</p>
+
+<p><img src="http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBNqZiaicWDc1JGYMU25eU49nicWkjWBr7iaPnORA6hpPz95H4sfWjQ7o0yoA/0?tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="selection sort"></p>
+
+<p><strong>Python:</strong></p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">selectionSort</span>(<span class="pl-smi">alist</span>):
+    <span class="pl-k">for</span> i <span class="pl-k">in</span> <span class="pl-c1">range</span>(<span class="pl-c1">len</span>(alist)<span class="pl-k">-</span><span class="pl-c1">1</span>,<span class="pl-c1">0</span>,<span class="pl-k">-</span><span class="pl-c1">1</span>):   <span class="pl-c"># a loop for each position</span>
+        posMax <span class="pl-k">=</span> <span class="pl-c1">0</span>
+        <span class="pl-k">for</span> loc <span class="pl-k">in</span> <span class="pl-c1">range</span>(<span class="pl-c1">1</span>,i<span class="pl-k">+</span><span class="pl-c1">1</span>):         <span class="pl-c"># a sub loop to find the largest number</span>
+            <span class="pl-k">if</span> alist[loc]<span class="pl-k">&gt;</span>alist[posMax]:
+                posMax<span class="pl-k">=</span>loc
+
+        temp <span class="pl-k">=</span> alist[i]                  <span class="pl-c"># exchange the number at current</span>
+        alist[i] <span class="pl-k">=</span> alist[posMax]         <span class="pl-c"># position and the largest number</span>
+        alist[posMax] <span class="pl-k">=</span> temp</pre></div>
+
+<p><strong>Ruby</strong></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">slct_sort</span> (<span class="pl-smi">arr</span>)
+    n <span class="pl-k">=</span> arr.length 
+    (n).times <span class="pl-k">do </span>|<span class="pl-smi">j</span>|
+        index <span class="pl-k">=</span> j
+        <span class="pl-k">for</span> i <span class="pl-k">in</span> j..n<span class="pl-k">-</span><span class="pl-c1">1</span>
+            <span class="pl-k">if</span> arr[i] <span class="pl-k">&lt;</span> arr[index]
+                index <span class="pl-k">=</span> i
+            <span class="pl-k">end</span>   
+        <span class="pl-k">end</span>
+        arr[j], arr[index] <span class="pl-k">=</span> arr[index], arr[j]
+    <span class="pl-k">end</span>
+    <span class="pl-k">return</span> arr
+<span class="pl-k">end</span>
+
+arr <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-k">new</span>(<span class="pl-c1">10000</span>)
+arr <span class="pl-k">=</span> <span class="pl-c1">10000</span>.times.map{<span class="pl-c1">0</span> <span class="pl-k">+</span> <span class="pl-c1">Random</span>.rand(<span class="pl-c1">10000</span>)}
+arr <span class="pl-k">=</span> slct_sort(arr)
+puts arr</pre></div>
+
+<h1>
+<a id="insertion-sort" class="anchor" href="#insertion-sort" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>insertion sort</h1>
+
+<p>Suppose, you want to sort elements in ascending as in above figure. Then,</p>
+
+<ul>
+<li>Step 1: The second element of an array is compared with the elements that appears before it (only first element in this case). If the second element is smaller than first element, second element is inserted in the position of first element. After first step, first two elements of an array will be sorted.</li>
+<li>Step 2: The third element of an array is compared with the elements that appears before it (first and second element). If third element is smaller than first element, it is inserted in the position of first element. If third element is larger than first element but, smaller than second element, it is inserted in the position of second element. If third element is larger than both the elements, it is kept in the position as it is. After second step, first three elements of an array will be sorted.</li>
+<li>Step 3: Similary, the fourth element of an array is compared with the elements that appears before it (first, second and third element) and the same procedure is applied and that element is inserted in the proper position. After third step, first four elements of an array will be sorted.
+If there are n elements to be sorted. Then, this procedure is repeated n-1 times to get sorted list of array.</li>
+</ul>
+
+<p>python</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">insertSort</span>(<span class="pl-smi">alist</span>):
+    <span class="pl-k">for</span> i <span class="pl-k">in</span> <span class="pl-c1">range</span>(<span class="pl-c1">1</span>,<span class="pl-c1">len</span>(alist)):
+        curr <span class="pl-k">=</span> alist[i]
+        pos <span class="pl-k">=</span> i
+<span class="pl-c"># compare the current number and the previous number</span>
+        <span class="pl-k">while</span> pos <span class="pl-k">&gt;</span><span class="pl-c1">0</span> <span class="pl-k">and</span> alist[pos<span class="pl-k">-</span><span class="pl-c1">1</span>]<span class="pl-k">&gt;</span> curr:
+            alist[pos] <span class="pl-k">=</span> alist[pos<span class="pl-k">-</span><span class="pl-c1">1</span>]
+            pos <span class="pl-k">=</span> pos<span class="pl-k">-</span><span class="pl-c1">1</span>
+<span class="pl-c"># put the number in the right place</span>
+        alist[pos]<span class="pl-k">=</span>curr</pre></div>
+
+<p>ruby:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Array</span>
+  <span class="pl-k">def</span> <span class="pl-en">insertionsort!</span>
+    <span class="pl-c1">1</span>.upto(length <span class="pl-k">-</span> <span class="pl-c1">1</span>) <span class="pl-k">do </span>|<span class="pl-smi">i</span>|
+      value <span class="pl-k">=</span> <span class="pl-v">self</span>[i]
+      j <span class="pl-k">=</span> i <span class="pl-k">-</span> <span class="pl-c1">1</span>
+      <span class="pl-k">while</span> j <span class="pl-k">&gt;=</span> <span class="pl-c1">0</span> <span class="pl-k">and</span> <span class="pl-v">self</span>[j] <span class="pl-k">&gt;</span> value
+        <span class="pl-v">self</span>[j<span class="pl-k">+</span><span class="pl-c1">1</span>] <span class="pl-k">=</span> <span class="pl-v">self</span>[j]
+        j <span class="pl-k">-=</span> <span class="pl-c1">1</span>
+      <span class="pl-k">end</span>
+      <span class="pl-v">self</span>[j<span class="pl-k">+</span><span class="pl-c1">1</span>] <span class="pl-k">=</span> value
+    <span class="pl-k">end</span>
+    <span class="pl-v">self</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+ary <span class="pl-k">=</span> [<span class="pl-c1">7</span>,<span class="pl-c1">6</span>,<span class="pl-c1">5</span>,<span class="pl-c1">9</span>,<span class="pl-c1">8</span>,<span class="pl-c1">4</span>,<span class="pl-c1">3</span>,<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">0</span>]
+p ary.insertionsort!
+<span class="pl-c"># =&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></pre></div>
+
+<h1>
+<a id="shell-sort" class="anchor" href="#shell-sort" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shell Sort</h1>
+
+<p>The shell sort, sometimes called the “diminishing increment sort,” improves on the insertion sort by breaking the original list into a number of smaller sublists, each of which is sorted using an insertion sort. The unique way that these sublists are chosen is the key to the shell sort. Instead of breaking the list into sublists of contiguous items, the shell sort uses an increment i, sometimes called the gap, to create a sublist by choosing all items that are i items apart.</p>
+
+<p><img src="http://mmbiz.qpic.cn/mmbiz/2A8tXicCG8ymuzP7hgSxdQNWOZWSLfCBN2Y0sg8gyBBiaib2xicPaibFBMO4Z7Micq6P6mIWc3kBmNrJgJN8dGOibckFQ/0?tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="shell sort"></p>
+
+<p>python</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">def</span> <span class="pl-en">shell</span>(<span class="pl-smi">seq</span>):
+    inc <span class="pl-k">=</span> <span class="pl-c1">len</span>(seq) <span class="pl-k">//</span> <span class="pl-c1">2</span>
+    <span class="pl-k">while</span> inc:
+        <span class="pl-k">for</span> i, el <span class="pl-k">in</span> <span class="pl-c1">enumerate</span>(seq):
+            <span class="pl-k">while</span> i <span class="pl-k">&gt;=</span> inc <span class="pl-k">and</span> seq[i <span class="pl-k">-</span> inc] <span class="pl-k">&gt;</span> el:
+                seq[i] <span class="pl-k">=</span> seq[i <span class="pl-k">-</span> inc]
+                i <span class="pl-k">-=</span> inc
+            seq[i] <span class="pl-k">=</span> el
+        inc <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-k">if</span> inc <span class="pl-k">==</span> <span class="pl-c1">2</span> <span class="pl-k">else</span> <span class="pl-c1">int</span>(inc <span class="pl-k">*</span> <span class="pl-c1">5.0</span> <span class="pl-k">/</span> <span class="pl-c1">11</span>)
+
+data <span class="pl-k">=</span> [<span class="pl-c1">22</span>, <span class="pl-c1">7</span>, <span class="pl-c1">2</span>, <span class="pl-k">-</span><span class="pl-c1">5</span>, <span class="pl-c1">8</span>, <span class="pl-c1">4</span>]
+shell(data)
+<span class="pl-c1">print</span> data <span class="pl-c"># [-5, 2, 4, 7, 8, 22]</span></pre></div>
+
+<p>ruby:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Array</span>
+  <span class="pl-k">def</span> <span class="pl-en">shellsort!</span>
+    inc <span class="pl-k">=</span> length <span class="pl-k">/</span> <span class="pl-c1">2</span>
+    <span class="pl-k">while</span> inc <span class="pl-k">!=</span> <span class="pl-c1">0</span>
+      inc.step(length<span class="pl-k">-</span><span class="pl-c1">1</span>) <span class="pl-k">do </span>|<span class="pl-smi">i</span>|
+        el <span class="pl-k">=</span> <span class="pl-v">self</span>[i]
+        <span class="pl-k">while</span> i <span class="pl-k">&gt;=</span> inc <span class="pl-k">and</span> <span class="pl-v">self</span>[i <span class="pl-k">-</span> inc] <span class="pl-k">&gt;</span> el
+          <span class="pl-v">self</span>[i] <span class="pl-k">=</span> <span class="pl-v">self</span>[i <span class="pl-k">-</span> inc]
+          i <span class="pl-k">-=</span> inc
+        <span class="pl-k">end</span>
+        <span class="pl-v">self</span>[i] <span class="pl-k">=</span> el
+      <span class="pl-k">end</span>
+      inc <span class="pl-k">=</span> (inc <span class="pl-k">==</span> <span class="pl-c1">2</span> <span class="pl-k">?</span> <span class="pl-c1">1</span> : (inc <span class="pl-k">*</span> <span class="pl-c1">5.0</span> <span class="pl-k">/</span> <span class="pl-c1">11</span>).to_i)
+    <span class="pl-k">end</span>
+    <span class="pl-v">self</span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+data <span class="pl-k">=</span> [<span class="pl-c1">22</span>, <span class="pl-c1">7</span>, <span class="pl-c1">2</span>, <span class="pl-k">-</span><span class="pl-c1">5</span>, <span class="pl-c1">8</span>, <span class="pl-c1">4</span>]
+data.shellsort!
+p data <span class="pl-c"># [-5, 2, 4, 7, 8, 22]</span></pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/SteveLi90/blogs">Blogs</a> is maintained by <a href="https://github.com/SteveLi90">SteveLi90</a>.</span>
